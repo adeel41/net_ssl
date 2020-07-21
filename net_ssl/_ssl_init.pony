@@ -1,6 +1,8 @@
 use "path:/usr/local/opt/libressl/lib" if osx
-use "lib:ssl"
-use "lib:crypto"
+use "lib:ssl" if not windows
+use "lib:crypto" if not windows
+use "lib:libssl" if windows
+use "lib:libcrypto" if windows
 
 use @OPENSSL_init_ssl[I32](opts: U64, settings: Pointer[_OpenSslInitSettings])
 use @OPENSSL_INIT_new[Pointer[_OpenSslInitSettings]]()
